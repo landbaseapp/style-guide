@@ -68,32 +68,4 @@ export default defineConfig({
       usePolling: true,
     },
   },
-
-  test: {
-    coverage: {
-      reporter: ['lcov', 'html'],
-      provider: 'v8',
-      include: ['**/*.ts'],
-      exclude: [
-        '**/*.tsx',
-        '**/index.ts',
-        '**/constants.ts',
-        '**/index.type.ts',
-        '**/schema.ts',
-        '**/types.ts',
-        '**/*.api.ts',
-        '**/config.ts',
-        '**/*.config.ts',
-        '**/style.ts',
-        '**/*.model.ts',
-        'vite.config.ts',
-        '.storybook/**',
-        '**/*.d.ts',
-        'constants/**',
-      ],
-    },
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: ['vitest.setup.ts'],
-  },
 } as UserConfig);
