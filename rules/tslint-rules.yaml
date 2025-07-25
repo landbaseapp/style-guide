@@ -1,0 +1,103 @@
+- id: prop-type-mismatch
+  language: typescript
+  message: "Prop type may be incompatible or missing required fields"
+  rule:
+    pattern: "$COMPONENT {$PROPS$}"
+    not:
+      has:
+        pattern: "from"
+
+- id: prefer-const
+  language: typescript
+  message: "Variable is never reassigned. Use 'const' instead of 'let'."
+  rule:
+    pattern: "let $ID = $VAL"
+    not:
+      has:
+        pattern: "$ID ="
+        after: "$VAL"
+
+- id: no-magic-number
+  language: typescript
+  message: "Avoid using magic numbers. Use named constants instead."
+  rule:
+    pattern: "$$_ = $NUM"
+  constraints:
+    NUM:
+      regex: "^[1-9][0-9]*$"
+
+- id: no-var
+  language: typescript
+  message: "Avoid using 'var'. Use 'let' or 'const' instead."
+  rule:
+    pattern: "var $ID ="
+
+- id: no-unused-named-import
+  language: typescript
+  message: "Unused named import detected"
+  rule:
+    pattern: "import { $ID } from $SOURCE"
+    not:
+      has:
+        pattern: "$ID"
+
+- id: no-unused-default-import
+  language: typescript
+  message: "Unused default import detected"
+  rule:
+    pattern: "import $ID from $SOURCE"
+    not:
+      has:
+        pattern: "$ID"
+
+- id: no-unused-namespace-import
+  language: typescript
+  message: "Unused namespace import detected"
+  rule:
+    pattern: "import * as $NS from $SOURCE"
+    not:
+      has:
+        pattern: "$NS"
+
+- id: no-console-except-error
+  language: typescript
+  message: "No console.log allowed except console.error on the catch block"
+  rule:
+    any:
+      - pattern: console.error($$$)
+        inside:
+          not:
+            kind: catch_clause
+            stopBy: end
+      - pattern: console.$METHOD($$$)
+  constraints:
+    METHOD:
+      regex: "log|debug|warn"
+
+- id: no-empty-function
+  language: typescript
+  message: "Empty function detected. Consider removing it or adding logic."
+  rule:
+    pattern: "function $NAME($$$) {$$$}"
+    constraints:
+        $$$:
+          regex: "^\\s*$"
+
+- id: no-redundant-condition
+  language: typescript
+  message: "Redundant condition always evaluates to true or false"
+  rule:
+    any:
+      - pattern: "if (true) {$$$}"
+      - pattern: "if (false) {$$$}"
+      - pattern: "while (false) {$$$}"
+      - pattern: "while (true) {$$$}"
+
+- id: no-dead-code
+  language: typescript
+  message: "Unreachable or unused code detected. Consider removing it."
+  rule:
+    any:
+      - pattern: "return $VAL; $AFTER"
+      - pattern: "if (false) { $$_ }"
+      - pattern: "const $ID = $VAL; // unused"

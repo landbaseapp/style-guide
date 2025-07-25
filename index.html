@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" type="image/x-icon" href="/landbase-favicon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landbase</title>
+  <script type="text/javascript">
+    window.heap = window.heap || [], heap.load = function (e, t) {
+      window.heap.appid = e, window.heap.config = t = t || {};
+      var r = document.createElement("script"); r.type = "text/javascript", r.async = !0, r.src = "https://cdn.heapanalytics.com/js/heap-" + e + ".js";
+      var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(r, a);
+      for (var n = function (e) { return function () { heap.push([e].concat(Array.prototype.slice.call(arguments, 0))) } },
+        p = ["addEventProperties", "addUserProperties", "clearEventProperties", "identify", "resetIdentity", "removeEventProperty", "setEventProperties", "track", "unsetEventProperty"], o = 0; o < p.length; o++)heap[p[o]] = n(p[o])
+    };
+    heap.load("%VITE_HEAP_ENVIRONMENT_ID%");
+  </script>
+</head>
+
+<body>
+  
+  <script>
+    // see https://www.getbeamer.com/docs
+    var beamer_config = {
+      product_id : '%VITE_BEAMER_PRODUCT_ID%',
+      selector: '.lb-beamer-trigger',
+    };
+  </script>
+  <script type="text/javascript" src="https://app.getbeamer.com/js/beamer-embed.js" defer="defer"></script>
+  <script type="text/javascript" src="https://plug-platform.devrev.ai/static/plug.js" defer="defer"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=%VITE_GOOGLE_API_API_KEY%&libraries=places">
+  </script>
+</body>
+
+</html>
